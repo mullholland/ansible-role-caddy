@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Install and configures the caddy webserver.
+  homepage: https://mullholland.net
+  topics: cloud, development, webserver, caddy, ansible, molecule, tox, playbook

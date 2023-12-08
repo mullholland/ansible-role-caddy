@@ -1,0 +1,41 @@
+# {{ ansible_managed }}
+
+# Refer to the Caddy docs for more information:
+# https://caddyserver.com/docs/caddyfile
+
+#######################################
+# global
+# https://caddyserver.com/docs/caddyfile/options
+#######################################
+
+{% for global in caddy_config_globals %}
+({{ snippet.name }}) {
+{{ snippet.config | indent( width=2, first=True) }}
+}
+
+{% endfor %}
+
+
+#######################################
+# snippets
+# https://caddyserver.com/docs/caddyfile/concepts#snippets
+#######################################
+
+{% for snippet in caddy_config_snippets %}
+({{ snippet.name }}) {
+{{ snippet.config | indent( width=2, first=True) }}
+}
+
+{% endfor %}
+
+#######################################
+# sites
+# https://caddyserver.com/docs/caddyfile
+#######################################
+
+{% for site in caddy_config_sites %}
+({{ site.name }}) {
+{{ site.config | indent( width=2, first=True) }}
+}
+
+{% endfor %}

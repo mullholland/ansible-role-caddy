@@ -1,0 +1,27 @@
+---
+- name: Install caddy
+  ansible.builtin.package:
+    name: "{{ nomad_packages }}"
+    state: present
+
+- name: Create Caddyfile
+  ansible.builtin.template:
+    src: "Caddyfile.j2"
+    dest: "/etc/caddy/Caddyfile"
+    owner: "root"
+    group: "root"
+    mode: "0640"
+  notify: caddy_restart
+
+- name: Create Caddy systemd unit file
+  ansible.builtin.template:
+    src: "caddy.service.j2"
+    dest: "/lib/systemd/system/caddy.service"
+    mode: 0644
+  notify: caddy_service_reload
+
+- name: Enable and start Caddy service
+  ansible.builtin.service:
+    name: caddy.service
+    state: started
+    enabled: true
