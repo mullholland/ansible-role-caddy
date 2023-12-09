@@ -1,7 +1,7 @@
 ---
 - name: Install caddy
   ansible.builtin.package:
-    name: "{{ nomad_packages }}"
+    name: "caddy"
     state: present
 
 - name: Create Caddyfile
