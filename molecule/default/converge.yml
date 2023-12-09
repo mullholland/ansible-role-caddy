@@ -11,6 +11,7 @@
     caddy_config_sites:
       - name: example.com
         config: |
+          import tls
           root * /var/www
           file_server
 
