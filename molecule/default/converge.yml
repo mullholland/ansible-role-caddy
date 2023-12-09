@@ -7,12 +7,11 @@
     caddy_config_snippets:
       - name: tls
         config: |
-          /etc/ssl/cert.pem /etc/ssl/key.pem
+          tls /etc/ssl/cert.pem /etc/ssl/key.pem
     caddy_config_sites:
-      - name: example.com
+      - name: :80
         config: |
-          import tls
-          root * /var/www
+          root * /usr/share/caddy
           file_server
 
   roles:

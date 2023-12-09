@@ -14,7 +14,7 @@ caddy_config_globals: |
 caddy_config_snippets: []
 #  - name: tls
 #    config: |
-#      /etc/ssl/cert.pem /etc/ssl/key.pem
+#      tls /etc/ssl/cert.pem /etc/ssl/key.pem
 
 # https://caddyserver.com/docs/caddyfile/patterns
 caddy_config_sites: []
