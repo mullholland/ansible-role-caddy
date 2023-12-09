@@ -43,10 +43,10 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   tasks:
     - name: Create private key
       ansible.builtin.copy:
-        dest: /etc/ssl/key.pem
-        owner: foo
-        group: foo
-        mode: '0644'
+        dest: "/etc/ssl/key.pem"
+        owner: "root"
+        group: "root"
+        mode: "0644"
         content: |
           -----BEGIN PRIVATE KEY-----
           MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDBJpbKyzg9MX2v
@@ -78,10 +78,10 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
           -----END PRIVATE KEY-----
     - name: Create simple self-signed certificate
       ansible.builtin.copy:
-        dest: /etc/ssl/cert.pem
-        owner: foo
-        group: foo
-        mode: '0644'
+        dest: "/etc/ssl/cert.pem"
+        owner: "root"
+        group: "root"
+        mode: "0644"
         content: |
           -----BEGIN CERTIFICATE-----
           MIIDkzCCAnugAwIBAgIUA8DUmIJmFWnVblVzrJ1ubXFc35AwDQYJKoZIhvcNAQEL
