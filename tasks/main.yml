@@ -19,9 +19,3 @@
     dest: "/lib/systemd/system/caddy.service"
     mode: 0644
   notify: caddy_service_reload
-
-- name: Enable and start Caddy service
-  ansible.builtin.service:
-    name: caddy.service
-    state: started
-    enabled: true
