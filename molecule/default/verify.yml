@@ -7,9 +7,9 @@
     verify:
       package: "caddy"
       config_file: "/etc/caddy/Caddyfile"
-      config_line: "metrics"
-      config_line2: "tls"
-      config_line3: "file_server"
+      config_line: "    metrics"
+      config_line2: "  tls"
+      config_line3: "  file_server"
       config_owner: "root"
       config_group: "root"
       config_mode: "0644"
