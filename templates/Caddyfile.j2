@@ -21,7 +21,7 @@
 #######################################
 
 {% for snippet in caddy_config_snippets %}
-({{ snippet.name }}) {
+{{ snippet.name }} {
 {{ snippet.config | indent( width=2, first=True) }}
 }
 
