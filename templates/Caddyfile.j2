@@ -8,12 +8,11 @@
 # https://caddyserver.com/docs/caddyfile/options
 #######################################
 
-{% for global in caddy_config_globals %}
-({{ snippet.name }}) {
-{{ snippet.config | indent( width=2, first=True) }}
+{% if caddy_config_globals is defined and caddy_config_globals|length %}
+{
+{{ caddy_config_globals | indent( width=2, first=True) }}
 }
-
-{% endfor %}
+{% endif %}
 
 
 #######################################

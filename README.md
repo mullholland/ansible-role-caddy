@@ -19,11 +19,11 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
     caddy_config_snippets:
       - name: tls
         config: |
-          /etc/ssl/cert.pem /etc/ssl/key.pem
+          tls /etc/ssl/cert.pem /etc/ssl/key.pem
     caddy_config_sites:
-      - name: example.com
+      - name: :80
         config: |
-          root * /var/www
+          root * /usr/share/caddy
           file_server
 
   roles:
@@ -38,16 +38,6 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   hosts: all
   become: true
   gather_facts: true
-
-  tasks:
-    - name: Create private key
-      community.crypto.openssl_privatekey:
-        path: /etc/ssl/key.pem
-    - name: Create simple self-signed certificate
-      community.crypto.x509_certificate:
-        path: /etc/ssl/cert.pem
-        privatekey_path: /etc/ssl/key.pem
-        provider: selfsigned
 
   roles:
     - role: mullholland.repository_caddy
@@ -76,7 +66,7 @@ caddy_config_globals: |
 caddy_config_snippets: []
 #  - name: tls
 #    config: |
-#      /etc/ssl/cert.pem /etc/ssl/key.pem
+#      tls /etc/ssl/cert.pem /etc/ssl/key.pem
 
 # https://caddyserver.com/docs/caddyfile/patterns
 caddy_config_sites: []
@@ -170,8 +160,6 @@ This role has been tested on these [container images](https://hub.docker.com/u/m
 |container|tags|
 |---------|----|
 |[EL](https://hub.docker.com/r/mullholland/enterpriselinux)|all|
-|[Amazon](https://hub.docker.com/r/mullholland/amazonlinux)|Candidate|
-|[Fedora](https://hub.docker.com/r/mullholland/fedora/)|all|
 |[Ubuntu](https://hub.docker.com/r/mullholland/ubuntu)|all|
 |[Debian](https://hub.docker.com/r/mullholland/debian)|all|
 

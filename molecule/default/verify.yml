@@ -7,10 +7,10 @@
     verify:
       package: "caddy"
       config_file: "/etc/caddy/Caddyfile"
-      config_line: "metrics"
+      config_line: "    metrics"
       config_owner: "root"
       config_group: "root"
-      config_mode: "0640"
+      config_mode: "0644"
       daemon: "caddy"
 
   tasks:
@@ -31,7 +31,7 @@
       register: package_installed
       failed_when: (package_installed is changed) or (package_installed is failed)
 
-    - name: check {{ verify.config_file }} conf file
+    - name: check {{ verify.config_file }} conf file for globals
       lineinfile:
         name: "{{ verify.config_file }}"
         line: "{{ verify.config_line }}"
