@@ -33,7 +33,7 @@
 #######################################
 
 {% for site in caddy_config_sites %}
-({{ site.name }}) {
+{{ site.name }} {
 {{ site.config | indent( width=2, first=True) }}
 }
 
