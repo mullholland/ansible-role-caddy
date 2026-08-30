@@ -1,7 +1,6 @@
 ---
 - name: Verify
   hosts: all
-  become: true
   gather_facts: true
   vars:
     verify:
@@ -23,6 +22,8 @@
           - "ansible_os_family  => {{ ansible_os_family}}"
           - "ansible_system  => {{ ansible_system }}"
 
+    # EL8 isn't supported (see tasks/main.yml), so nothing below was
+    # actually installed there.
     - name: Check if package is installed
       ansible.builtin.package:
         name: "{{ verify.package }}"
@@ -30,6 +31,7 @@
       check_mode: true
       register: package_installed
       failed_when: (package_installed is changed) or (package_installed is failed)
+      when: not (ansible_os_family == 'RedHat' and ansible_distribution_major_version == '8')
 
     - name: check {{ verify.config_file }} conf file for globals
       lineinfile:
@@ -51,3 +53,4 @@
       check_mode: true
       register: molecule_service
       failed_when: (molecule_service is changed) or (molecule_service is failed)
+      when: not (ansible_os_family == 'RedHat' and ansible_distribution_major_version == '8')
