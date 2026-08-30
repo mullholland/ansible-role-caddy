@@ -1,13 +1,8 @@
 ---
-# EL8 isn't supported: mullholland.repository_caddy can't enable its COPR
-# repository there (dnf's Python bindings only exist for the system's
-# platform-python, not the newer interpreter current ansible-core needs).
 - name: Install caddy
   ansible.builtin.package:
     name: "caddy"
     state: present
-  when: >-
-    not (ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution_major_version'] == '8')
 
 - name: Create Caddyfile
   ansible.builtin.template:
