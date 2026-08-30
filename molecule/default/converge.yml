@@ -1,7 +1,6 @@
 ---
 - name: Converge
   hosts: all
-  become: true
   gather_facts: true
   vars:
     caddy_config_snippets:
@@ -15,4 +14,4 @@
           file_server
 
   roles:
-    - role: "ansible-role-caddy"
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}"

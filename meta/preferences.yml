@@ -1,0 +1,13 @@
+---
+# This file is used by ansible-generator.
+
+# CentOS isn't a valid Galaxy platform name (only "EL" is). Tested here
+# (not Rocky/AlmaLinux) because mullholland.repository_caddy, which this
+# role relies on to have the caddy package available, only supports
+# Ubuntu/Debian/Fedora/RHEL/CentOS - see that role's tasks/main.yml for why
+# Rocky/AlmaLinux are excluded (the @caddy/caddy COPR project doesn't
+# publish chroots for them).
+extra_platforms:
+  - name: CentOS
+    versions:
+      - all

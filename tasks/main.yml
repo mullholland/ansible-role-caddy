@@ -11,11 +11,11 @@
     owner: "root"
     group: "root"
     mode: "0644"
-  notify: caddy_restart
+  notify: Caddy restart
 
 - name: Create Caddy systemd unit file
   ansible.builtin.template:
     src: "caddy.service.j2"
     dest: "/lib/systemd/system/caddy.service"
     mode: "0644"
-  notify: caddy_service_reload
+  notify: Caddy service reload
